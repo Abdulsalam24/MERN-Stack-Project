@@ -4,7 +4,8 @@
   "description": "support Ticket App",
   "main": "server.js",
   "scripts": {
-    "start": "node ./backend/server"
+    "start": "node ./backend/server",
+    "server": "nodemon ./backend/server"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "colors": "^1.4.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
     "mongoose": "^6.5.4"
   },
   "devDependencies": {
