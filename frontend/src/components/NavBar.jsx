@@ -7,7 +7,7 @@ function NavBar() {
   return (
     <>
       <header className="flex justify-between items-center p-5 border-b-2 border-gray-300">
-      <Link to="/"><h1 className="text-2xl">Help Desk</h1></Link>
+      <Link to="/"><h1 className="text-2xl">Support Desk</h1></Link>
         <ul className="flex">
           <Link to="/login" className="flex items-center" >
           <FaSignOutAlt/> <li> Login</li>

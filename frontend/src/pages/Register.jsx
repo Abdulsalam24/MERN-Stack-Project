@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserAlt, FaUserLock, FaUserCheck } from "react-icons/fa";
+import {useNavigate} from 'react-router-dom'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { register } from "../features/auth/authSlice";
+import { register, reset } from "../features/auth/authSlice";
 
 
 
@@ -18,8 +19,11 @@ function Register() {
   const { name, email, password, password2 } = formData;
 
   const dispatch = useDispatch()
-  const {user} = useSelector(state => state.auth)
+  const navigate = useNavigate()
+
+  const {user,isError,isSuccess,isLoading,message} = useSelector(state => state.auth)
   
+
   const onChange = (e) => {
     setformData((prevState) => ({
       ...prevState,
@@ -29,7 +33,7 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password != password2) {
+    if (password !== password2) {
       toast("Please comfirm password");
     }else{
       const userData = {
@@ -39,8 +43,18 @@ function Register() {
       }
       dispatch(register(userData))
     }
-    
   };
+
+  useEffect(() => {
+      if (isError) {
+        toast(message)
+      }
+      if(isSuccess || user){
+        navigate("/")
+      }
+      dispatch(reset())
+  }, [isError,dispatch,isSuccess])
+  
 
   return (
     <div className="w-4/5 m-auto">
