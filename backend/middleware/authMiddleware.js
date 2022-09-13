@@ -7,7 +7,7 @@ const protect = asyncHandler(async (req, res, next) => {
     //check if there is a Bearer token 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
-            //assing the token variable to Token in the req.header.authorization
+            //assign the token variable to Token in the req.header.authorization
             token = req.headers.authorization.split(' ')[1]
 
             //verify if the token is the right one 
