@@ -1,14 +1,15 @@
 const asyncHandler = require("express-async-handler")
-
+const User = require("../models/userModel")
 
 
 const getTickets = asyncHandler(async (req, res) => {
-    console.log({ message: "GetTickets" })
+    
+    res.send({ message: "GetTickets" })
 })
 
 
 const createTicket = asyncHandler(async (req, res) => {
-    console.log({ message: "CreateTicket" })
+    res.send({ message: "CreateTicket" })
 })
 
 
