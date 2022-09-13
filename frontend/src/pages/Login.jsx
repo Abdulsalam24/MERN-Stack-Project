@@ -1,7 +1,11 @@
-import { useState } from "react";
-import { FaUserLock, FaSignInAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FaUserLock, FaSignInAlt } from "react-icons/fa";
+
+import { login,reset } from "../features/auth/authSlice";
+
 
 function Login() {
   const [formData, setformData] = useState({
@@ -11,8 +15,10 @@ function Login() {
 
   const { email, password } = formData;
 
-  const dispatch = useDispatch()
-  const {user} = useSelector(state => state.auth)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isSuccess,isError } = useSelector((state) => state.auth);
 
   const onChange = (e) => {
     setformData((prevState) => ({
@@ -29,6 +35,16 @@ function Login() {
     };
     dispatch(login(userData));
   };
+
+  useEffect(() => {
+    if(isError){
+      toast.error()
+    }
+    if (isSuccess || user) {
+      navigate("/");
+    }
+    dispatch(reset());
+  }, [navigate,dispatch,isSuccess,user]);
 
   return (
     <div className="w-4/5 m-auto">

@@ -47,13 +47,13 @@ function Register() {
 
   useEffect(() => {
       if (isError) {
-        toast(message)
+        toast.error(message)
       }
       if(isSuccess || user){
         navigate("/")
       }
       dispatch(reset())
-  }, [isError,dispatch,isSuccess])
+  }, [user,isError,isSuccess,message, dispatch,navigate])
   
 
   return (
