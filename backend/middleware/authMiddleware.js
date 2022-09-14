@@ -15,7 +15,7 @@ const protect = asyncHandler(async (req, res, next) => {
             
             //set the req user as the current one so it can be accesable
             req.user = await User.findById(decoded.id).select("-password")
-            console.log(req.user , 'req.user')
+            // console.log(req.user , 'req.user')
             next()
 
         } catch (error) {
