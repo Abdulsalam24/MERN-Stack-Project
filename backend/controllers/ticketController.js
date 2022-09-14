@@ -56,12 +56,12 @@ const getTicket = asyncHandler(async (req, res) => {
 
     const ticket = await Ticket.findById(req.params.id)
 
-    if(!ticket){
+    if (!ticket) {
         res.status(404)
         throw new Error("ticket not found")
     }
 
-    if(ticket.user.toString() !== req.user.id){
+    if (ticket.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error("not authorized")
     }
@@ -79,7 +79,7 @@ const deleteTicket = asyncHandler(async (req, res) => {
 
     const ticket = await Ticket.findById(req.params.id)
 
-    if(!ticket){
+    if (!ticket) {
         res.status(404)
         throw new Error("ticket not found")
     }
@@ -99,7 +99,7 @@ const updateTicket = asyncHandler(async (req, res) => {
 
     const ticket = await Ticket.findById(req.params.id)
 
-    if(!ticket){
+    if (!ticket) {
         res.status(404)
         throw new Error("ticket not found")
     }
