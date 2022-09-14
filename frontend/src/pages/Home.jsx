@@ -5,6 +5,7 @@ import {
   FaSignInAlt,
   FaTicketAlt,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -18,14 +19,18 @@ function Home() {
 
       <form className="form-control">
         <div className="text-center my-3">
-          <button className="btn rounded font-black bg-white hover:bg-gray-100 text-black w-full btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-            Create new Ticket <FaTicketAlt className="ml-3" />
-          </button>
+          <Link to="/create-ticket">
+            <button className="btn rounded font-black bg-white hover:bg-gray-100 text-black w-full btn-xs sm:btn-sm md:btn-md lg:btn-lg">
+              Create new Ticket <FaTicketAlt className="ml-3" />
+            </button>
+          </Link>
         </div>
         <div className="text-center my-3">
-          <button className="btn rounded bg-black text-white hover:bg-gray-700 w-full btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-            View my Tickets <FaTicketAlt className="ml-3" />
-          </button>
+          <Link to="/tickets">
+            <button className="btn rounded bg-black text-white hover:bg-gray-700 w-full btn-xs sm:btn-sm md:btn-md lg:btn-lg">
+              View my Tickets <FaTicketAlt className="ml-3" />
+            </button>
+          </Link>
         </div>
       </form>
     </div>

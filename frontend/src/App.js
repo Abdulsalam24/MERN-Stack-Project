@@ -1,12 +1,12 @@
 import React from 'react';
-// import logo from './logo.svg';
-// import { Counter } from './features/counter/Counter';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreateTicket from './pages/CreateTicket';
 import { ToastContainer } from 'react-toastify';
+import ProtectRoute from './components/ProtectRoute';
 
 
 function App() {
@@ -14,15 +14,20 @@ function App() {
     <>
       <Router>
         <div className="container m-auto font-body">
-          <NavBar/>
+          <NavBar />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+
+            <Route path='/create-ticket' element={<ProtectRoute />} >
+              <Route path='/create-ticket' element={<CreateTicket />} />
+            </Route>
+
           </Routes>
         </div>
       </Router>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }
