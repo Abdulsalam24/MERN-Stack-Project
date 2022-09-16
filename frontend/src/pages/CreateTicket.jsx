@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createTicket } from "../features/tickets/ticketSlice";
 import { reset } from "../features/tickets/ticketSlice";
+import BackButton from "../components/BackButton";
 
 function CreateTicket() {
   const navigate = useNavigate();
@@ -44,12 +45,14 @@ function CreateTicket() {
     if (isSuccess) {
       toast.success("New ticket created");
       dispatch(reset());
+      navigate("/tickets");
     }
     dispatch(reset());
   }, [isError, isSuccess, dispatch]);
 
   return (
     <div className="w-4/5 m-auto">
+      <BackButton url="/" />
       <div className="flex items-center justify-center mt-10">
         <h2>Create Ticket</h2>
       </div>
@@ -113,8 +116,6 @@ function CreateTicket() {
           <textarea
             name="description"
             id="description"
-            cols="30"
-            rows="10"
             value={description}
             placeholder="Description"
             className="textarea w-full bg-white"

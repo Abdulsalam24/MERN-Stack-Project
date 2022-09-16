@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import AuthStatus from '../hooks/AuthStatus'
+import Spinner from './Spinner'
 
 
 const ProtectRoute = () => {
@@ -7,7 +8,7 @@ const ProtectRoute = () => {
     const { loggedIn, checkStatus } = AuthStatus()
 
     if (checkStatus) {
-        return (<h2>Loading ...</h2>)
+        return <Spinner />
     }
 
     return (

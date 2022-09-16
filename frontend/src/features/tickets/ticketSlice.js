@@ -44,6 +44,8 @@ const ticketSlice = createSlice({
                 state.message = action.payload
                 state.ticket = {}
             })
+
+            
     }
 
 
