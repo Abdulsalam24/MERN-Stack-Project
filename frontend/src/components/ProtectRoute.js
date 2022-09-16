@@ -9,7 +9,6 @@ const ProtectRoute = () => {
     if (checkStatus) {
         return (<h2>Loading ...</h2>)
     }
-    console.log(loggedIn)
 
     return (
         loggedIn ? <Outlet /> : <Navigate to='/login' />
