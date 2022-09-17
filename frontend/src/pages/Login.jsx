@@ -44,7 +44,7 @@ function Login() {
       navigate("/");
     }
     dispatch(reset());
-  }, [navigate,dispatch,isSuccess,user]);
+  }, [navigate,dispatch,isSuccess,isError,user]);
 
   return (
     <div className="w-4/5 m-auto">

@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import CreateTicket from './pages/CreateTicket';
 import { ToastContainer } from 'react-toastify';
 import ProtectRoute from './components/ProtectRoute';
+import Tickets from './pages/Tickets';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
             <Route path='/create-ticket' element={<ProtectRoute />} >
               <Route path='/create-ticket' element={<CreateTicket />} />
             </Route>
-
+            <Route path='/tickets' element={<Tickets />} />
           </Routes>
         </div>
       </Router>

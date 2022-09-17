@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserAlt, FaUserLock, FaUserCheck } from "react-icons/fa";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { register, reset } from "../features/auth/authSlice";
-
-
 
 function Register() {
   const [formData, setformData] = useState({
@@ -15,14 +13,15 @@ function Register() {
     password: "",
     password2: "",
   });
-  
+
   const { name, email, password, password2 } = formData;
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const {user,isError,isSuccess,isLoading,message} = useSelector(state => state.auth)
-  
+  const { user, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
 
   const onChange = (e) => {
     setformData((prevState) => ({
@@ -35,26 +34,25 @@ function Register() {
     e.preventDefault();
     if (password !== password2) {
       toast("Please comfirm password");
-    }else{
+    } else {
       const userData = {
         name,
         email,
-        password
-      }
-      dispatch(register(userData))
+        password,
+      };
+      dispatch(register(userData));
     }
   };
 
   useEffect(() => {
-      if (isError) {
-        toast.error(message)
-      }
-      if(isSuccess || user){
-        navigate("/")
-      }
-      dispatch(reset())
-  }, [user,isError,isSuccess,message, dispatch,navigate])
-  
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess || user) {
+      navigate("/");
+    }
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, isLoading, dispatch, navigate]);
 
   return (
     <div className="w-4/5 m-auto">
