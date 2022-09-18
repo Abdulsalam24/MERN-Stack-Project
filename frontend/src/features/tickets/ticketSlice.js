@@ -20,7 +20,7 @@ export const createTicket = createAsyncThunk('ticket/create', async (ticketData,
     }
 })
 
-export const getTickets = createAsyncThunk('ticket/get', async (thunkAPI) => {
+export const getTickets = createAsyncThunk('ticket/getAll', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await ticketService.getTicket(token)
@@ -30,15 +30,19 @@ export const getTickets = createAsyncThunk('ticket/get', async (thunkAPI) => {
     }
 })
 
-
 const ticketSlice = createSlice({
     name: "ticket",
+    initialState,
     reducers: {
         reset: (state) => {
-            state = initialState
+            state.isError = false
+            state.isLoading = false
+            state.isSuccess = false
+            state.message = ''
+            state.ticket = state.ticket
+            state.tickets = state.tickets
         }
     },
-    initialState,
     extraReducers: (builder) => {
         builder
             .addCase(createTicket.pending, (state) => {
@@ -64,19 +68,14 @@ const ticketSlice = createSlice({
             .addCase(getTickets.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.ticket = action.payload
+                state.tickets = action.payload
             })
             .addCase(getTickets.rejected, (state, action) => {
                 state.isError = true
                 state.isLoading = false
                 state.message = action.payload
-                state.ticket = {}
             })
-
-
     }
-
-
 })
 
 export const { reset } = ticketSlice.actions

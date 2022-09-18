@@ -1,20 +1,37 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getTickets } from '../features/tickets/ticketSlice'
-
+import { useEffect } from "react";
+import { FaSignInAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import BackButton from "../components/BackButton";
+import TicketItem from "../components/TicketItem";
+import { getTickets, reset } from "../features/tickets/ticketSlice";
 
 function Tickets() {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { tickets, isError, isSuccess, isLoading } = useSelector(
+    (state) => state.tickets
+  );
 
-    useEffect(() => {
-      dispatch(getTickets())
-      console.log('first')
-    }, [dispatch])
-    
-    
+  console.log(tickets, "ticketsssss");
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(reset());
+    }
+    dispatch(getTickets());
+  }, [dispatch]);
+
   return (
-    <div>Tickets</div>
-  )
+    <>
+      <BackButton url="/" />
+      <div className="flex items-center justify-center mt-10">
+        <h2>Tickets</h2>
+      </div>
+
+      {tickets.map((ticket) => (
+        <TicketItem key={ticket._id} ticket={ticket} />
+      ))}
+    </>
+  );
 }
 
-export default Tickets
+export default Tickets;
