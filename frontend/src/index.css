@@ -12,7 +12,7 @@ h2{
     font-size: 2.3rem;
 }
 p{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 form .input-div{
@@ -29,4 +29,21 @@ form .input-div svg{
 
 form .input-div input{
     background-color: white;
+}
+
+
+.ticket-header{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr) ) ;
+    gap: 2rem;
+    padding: 1rem 3rem;
+    background-color: rgb(224, 224, 224);
+}
+
+.ticket{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr) ) ;
+    gap: 2rem;
+    padding: 1rem 3rem;
+    background-color: rgb(224, 224, 224);
 }

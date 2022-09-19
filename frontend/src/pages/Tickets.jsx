@@ -27,6 +27,12 @@ function Tickets() {
         <h2>Tickets</h2>
       </div>
 
+      <div className="ticket-header mb-8">
+        <div>Date</div>
+        <div>Product</div>
+        <div>Status</div>
+      </div>
+
       {tickets.map((ticket) => (
         <TicketItem key={ticket._id} ticket={ticket} />
       ))}

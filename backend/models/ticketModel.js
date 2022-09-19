@@ -21,10 +21,11 @@ const ticketSchema = moongose.Schema({
         required: true,
         enum: ['new', 'open', 'closed'],
         default: 'new'
-    }
+    },
 },
     {
-        timeStamps: true
-    }
+        timestamps: true,
+    },
 )
- module.exports = moongose.model('Ticket' , ticketSchema)
+
+module.exports = moongose.model('Ticket', ticketSchema)
