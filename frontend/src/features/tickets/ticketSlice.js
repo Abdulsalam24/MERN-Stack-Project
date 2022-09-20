@@ -35,12 +35,7 @@ const ticketSlice = createSlice({
     initialState,
     reducers: {
         reset: (state) => {
-            state.isError = false
-            state.isLoading = false
-            state.isSuccess = false
-            state.message = ''
-            state.ticket = state.ticket
-            state.tickets = state.tickets
+            state = initialState
         }
     },
     extraReducers: (builder) => {

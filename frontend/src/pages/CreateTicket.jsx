@@ -17,7 +17,7 @@ function CreateTicket() {
 
   const { product, description } = formData;
 
-  const { isSuccess, isError } = useSelector((state) => state.ticket);
+  const { isSuccess, isError } = useSelector((state) => state.tickets);
   const { user } = useSelector((state) => state.auth);
   const name = user.name;
   const email = user.email;

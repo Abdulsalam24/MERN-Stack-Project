@@ -24,7 +24,8 @@ const ticketSchema = moongose.Schema({
     },
 },
     {
-        timestamps: true,
+        timestamps: Date.now,
+
     },
 )
 
