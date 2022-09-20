@@ -7,11 +7,10 @@ import { getTickets, reset } from "../features/tickets/ticketSlice";
 
 function Tickets() {
   const dispatch = useDispatch();
-  const { tickets, isError, isSuccess, isLoading } = useSelector(
+  const { tickets, isSuccess } = useSelector(
     (state) => state.tickets
   );
 
-  console.log(tickets, "ticketsssss");
 
   useEffect(() => {
     if (isSuccess) {

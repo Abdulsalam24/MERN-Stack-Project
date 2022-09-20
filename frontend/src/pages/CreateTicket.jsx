@@ -7,6 +7,7 @@ import { reset } from "../features/tickets/ticketSlice";
 import BackButton from "../components/BackButton";
 
 function CreateTicket() {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -43,12 +44,12 @@ function CreateTicket() {
       toast.error("Something went wrong");
     }
     if (isSuccess) {
-      toast.success("New ticket created");
       dispatch(reset());
       navigate("/tickets");
+      toast.success("New ticket created");
     }
     dispatch(reset());
-  }, [isError, isSuccess, dispatch]);
+  }, [dispatch,isError,isSuccess]);
 
   return (
     <div className="w-4/5 m-auto">
