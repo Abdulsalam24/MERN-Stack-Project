@@ -54,3 +54,11 @@ form .input-div input {
   padding: 1rem 3rem;
   background-color: rgb(224, 224, 224);
 }
+
+.status-new {
+  background-color: rgb(8, 113, 8);
+}
+
+.status-closed {
+  background-color: rgb(204, 10, 10);
+}

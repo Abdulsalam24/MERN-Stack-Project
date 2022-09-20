@@ -54,7 +54,7 @@ const ticketSlice = createSlice({
     name: "ticket",
     initialState,
     reducers: {
-        reset: (state) => initialState
+        reset: (state) => initialState,
     },
     extraReducers: (builder) => {
         builder
@@ -64,17 +64,14 @@ const ticketSlice = createSlice({
             .addCase(createTicket.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.ticket = action.payload
             })
             .addCase(createTicket.rejected, (state, action) => {
                 state.isError = true
                 state.isLoading = false
                 state.message = action.payload
-                state.ticket = {}
             })
 
             //get request
-
             .addCase(getTickets.pending, (state) => {
                 state.isLoading = true
             })
@@ -105,18 +102,9 @@ const ticketSlice = createSlice({
             })
 
             //close ticket
-            .addCase(closeTicket.pending, (state) => {
-                state.isLoading = true
-            })
             .addCase(closeTicket.fulfilled, (state, action) => {
                 state.isLoading = false
-                state.isSuccess = true
-                state.ticket = action.payload
-            })
-            .addCase(closeTicket.rejected, (state, action) => {
-                state.isError = true
-                state.isLoading = false
-                state.message = action.payload
+                state.tickets.map((ticket) => ticket._id === action.payload._id ? ticket.status = "closed" : ticket)
             })
     }
 })

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   FaUserAlt,
   FaUserLock,
@@ -5,9 +6,18 @@ import {
   FaSignInAlt,
   FaTicketAlt,
 } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
+import { reset } from "../features/tickets/ticketSlice";
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
+
   return (
     <div className="w-4/5 m-auto">
       <div className="flex items-center justify-center mt-10">

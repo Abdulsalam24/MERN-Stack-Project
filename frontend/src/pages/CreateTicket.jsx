@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createTicket } from "../features/tickets/ticketSlice";
 import { reset } from "../features/tickets/ticketSlice";
+import Spinner from "../components/Spinner";
 import BackButton from "../components/BackButton";
 
 function CreateTicket() {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -18,7 +18,9 @@ function CreateTicket() {
 
   const { product, description } = formData;
 
-  const { isSuccess, isError } = useSelector((state) => state.tickets);
+  const { isSuccess, isError, message, isLoading } = useSelector(
+    (state) => state.tickets
+  );
   const { user } = useSelector((state) => state.auth);
   const name = user.name;
   const email = user.email;
@@ -30,6 +32,18 @@ function CreateTicket() {
     }));
   };
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess) {
+      toast.success("New ticket created successfuly")
+      navigate("/tickets");
+      dispatch(reset());
+    }
+    dispatch(reset());
+  }, [dispatch, isError, isSuccess, navigate, message]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const userData = {
@@ -39,17 +53,9 @@ function CreateTicket() {
     dispatch(createTicket(userData));
   };
 
-  useEffect(() => {
-    if (isError) {
-      toast.error("Something went wrong");
-    }
-    if (isSuccess) {
-      dispatch(reset());
-      navigate("/tickets");
-      toast.success("New ticket created");
-    }
-    dispatch(reset());
-  }, [dispatch,isError,isSuccess]);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="w-4/5 m-auto">

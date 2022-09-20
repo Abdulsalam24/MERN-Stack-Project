@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { closeTicket, getTicket, reset } from "../features/tickets/ticketSlice";
 import { toast } from "react-toastify";
 import BackButton from "../components/BackButton";
 
 function Ticket() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+
   const { ticketId } = useParams();
 
   const { ticket, isError } = useSelector((state) => state.tickets);
@@ -20,14 +23,17 @@ function Ticket() {
     }
   }, []);
 
-  //   closeTicket()
+  const handleCloseTicket = () => {
+    dispatch(closeTicket(ticketId));
+    navigate("/tickets")
+  };
 
   return (
     <div>
       <BackButton url="/tickets" />
       <div className="flex justify-between items-center my-4">
         <h3>Ticket Id: {_id} </h3>
-        <div className="btn btn-xs btn-disabled text-white bg-green-500 border-0">
+        <div className={`status-${status} btn btn-xs text-white border-0`}>
           <p>{status}</p>
         </div>
       </div>
@@ -41,7 +47,14 @@ function Ticket() {
         <p>{description}</p>
       </div>
 
-      {status !== "new" && <div className="btn w-full border-0">thi</div>}
+      {status === "new" && (
+        <div
+          className="btn mt-3 text-white bg-red-500 w-full border-0"
+          onClick={handleCloseTicket}
+        >
+          close
+        </div>
+      )}
     </div>
   );
 }

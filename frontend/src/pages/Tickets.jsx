@@ -11,13 +11,13 @@ function Tickets() {
     (state) => state.tickets
   );
 
-
   useEffect(() => {
     if (isSuccess) {
-      dispatch(reset());
+      dispatch(reset()); 
     }
     dispatch(getTickets());
   }, [dispatch]);
+
 
   return (
     <>
