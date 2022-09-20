@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import ProtectRoute from './components/ProtectRoute';
 import Tickets from './pages/Tickets';
 
+import Ticket from './pages/Ticket';
+
 
 function App() {
   return (
@@ -27,6 +29,11 @@ function App() {
             <Route path='/tickets' element={<ProtectRoute />} >
               <Route path='/tickets' element={<Tickets />} />
             </Route>
+
+            <Route path='/ticket/:ticketId' element={<ProtectRoute />} >
+              <Route path='/ticket/:ticketId' element={<Ticket />} />
+            </Route>
+
           </Routes>
         </div>
       </Router>
