@@ -4,28 +4,34 @@ import { useNavigate, useParams } from "react-router-dom";
 import { closeTicket, getTicket, reset } from "../features/tickets/ticketSlice";
 import { toast } from "react-toastify";
 import BackButton from "../components/BackButton";
+import { getNotes } from "../features/notes/noteSlice";
+import NoteItem from "../components/NoteItem";
 
 function Ticket() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const { ticketId } = useParams();
 
   const { ticket, isError } = useSelector((state) => state.tickets);
-
   const { _id, status, product, description, createdAt } = ticket;
+
+  //notes
+  const { notes } = useSelector((state) => state.notes);
+
+  console.log(notes, "notessss");
 
   useEffect(() => {
     dispatch(getTicket(ticketId));
     if (isError) {
       toast.error("Something is wrong");
     }
+    dispatch(getNotes(ticketId));
   }, []);
 
   const handleCloseTicket = () => {
     dispatch(closeTicket(ticketId));
-    navigate("/tickets")
+    navigate("/tickets");
   };
 
   return (
@@ -55,6 +61,12 @@ function Ticket() {
           close
         </div>
       )}
+      <div className="notes mt-5">
+        Notes:
+        {notes.map((note) => (
+          <NoteItem key={note._id} note={note} />
+        ))}
+      </div>
     </div>
   );
 }
