@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { closeTicket, getTicket, reset } from "../features/tickets/ticketSlice";
 import { toast } from "react-toastify";
 import BackButton from "../components/BackButton";
-import { getNotes } from "../features/notes/noteSlice";
+import { createNote, getNotes } from "../features/notes/noteSlice";
 import NoteItem from "../components/NoteItem";
 
 function Ticket() {
+  const [noteText, setNoteText] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,6 +34,11 @@ function Ticket() {
   const handleCloseTicket = () => {
     dispatch(closeTicket(ticketId));
     navigate("/tickets");
+  };
+
+  const handleNoteSubmit = (e) => {
+    e.preventDefault()
+    dispatch(createNote(noteText, ticketId));
   };
 
   return (
@@ -61,7 +68,21 @@ function Ticket() {
           close
         </div>
       )}
-      <div className="notes mt-5">
+
+      <div className="btn bg-black text-white my-5">Create note</div>
+      <form onSubmit={handleNoteSubmit}>
+        <input
+          type="text"
+          name="text"
+          id="text"
+          className="input"
+          value={noteText}
+          onChange={(e) => setNoteText(e.target.value)}
+        />
+        <div className="btn bg-black text-white" onClick={handleNoteSubmit}>Submit</div>
+      </form>
+
+      <div className="notes">
         Notes:
         {notes.map((note) => (
           <NoteItem key={note._id} note={note} />
