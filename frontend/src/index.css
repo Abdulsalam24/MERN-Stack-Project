@@ -8,16 +8,23 @@
   gap: 0.3rem;
 }
 
-
 .form-control button {
-  font-size: clamp(14px, 2vw, 19px);
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 h2 {
-  font-size: clamp(24px, 2vw, 30px);
+  font-size: clamp(24px, 2vw, 35px);
   font-weight: 500;
 }
 
+.form-control input,.form-control select,.form-control textarea{
+  margin: 5px 0 20px;
+}
+.form-control select{
+  outline: solid rgb(235, 235, 235);
+  padding: 0 10px;
+  margin: 5px 0 20px;
+}
 /* 
 
 
@@ -34,6 +41,7 @@ h4 {
 p {
   font-size: 1.1rem;
 } 
+
 form .input-div {
   position: relative;
   margin: 0.5rem 0;
