@@ -6,9 +6,11 @@ import { toast } from "react-toastify";
 import BackButton from "../components/BackButton";
 import { createNote, getNotes } from "../features/notes/noteSlice";
 import NoteItem from "../components/NoteItem";
+import Modal from "react-modal";
 
 function Ticket() {
   const [noteText, setNoteText] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,9 +21,9 @@ function Ticket() {
   const { _id, status, product, description, createdAt } = ticket;
 
   //notes
-  const { notes } = useSelector((state) => state.notes);
+  const { user } = useSelector((state) => state.auth);
 
-  console.log(notes, "notessss");
+  const { notes } = useSelector((state) => state.notes);
 
   useEffect(() => {
     dispatch(getTicket(ticketId));
@@ -36,9 +38,32 @@ function Ticket() {
     navigate("/tickets");
   };
 
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
+  Modal.setAppElement("#root");
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
   const handleNoteSubmit = (e) => {
-    e.preventDefault()
-    dispatch(createNote(noteText, ticketId));
+    e.preventDefault();
+    dispatch(createNote({ noteText, ticketId }));
+    setNoteText("");
+    closeModal();
   };
 
   return (
@@ -69,23 +94,38 @@ function Ticket() {
         </div>
       )}
 
-      <div className="btn bg-black text-white my-5">Create note</div>
-      <form onSubmit={handleNoteSubmit}>
-        <input
-          type="text"
-          name="text"
-          id="text"
-          className="input"
-          value={noteText}
-          onChange={(e) => setNoteText(e.target.value)}
-        />
-        <div className="btn bg-black text-white" onClick={handleNoteSubmit}>Submit</div>
-      </form>
+      <button className="btn bg-black text-white my-5" onClick={openModal}>
+        Create note
+      </button>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={openModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Create note"
+        
+      >
+        <div onClick={() => setModalIsOpen(false)}>X</div>
+        <form onSubmit={handleNoteSubmit}>
+          <input
+            type="text"
+            name="text"
+            id="text"
+            className="input"
+            value={noteText}
+            onChange={(e) => setNoteText(e.target.value)}
+          />
+          <div className="btn bg-black text-white" onClick={handleNoteSubmit}>
+            Submit
+          </div>
+        </form>
+      </Modal>
 
       <div className="notes">
         Notes:
         {notes.map((note) => (
-          <NoteItem key={note._id} note={note} />
+          <NoteItem key={note._id} note={note} user={user} />
         ))}
       </div>
     </div>
