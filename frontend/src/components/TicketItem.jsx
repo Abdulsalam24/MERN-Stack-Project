@@ -10,7 +10,7 @@ function TicketItem({ ticket }) {
       </p>
 
       <Link to={`/ticket/${ticket._id}`}>
-        <button className="btn btn-xs bg-white md:btn-sm border-0 text-black">view</button>
+        <button className="btn btn-xs bg-white hover:text-white md:btn-sm border-0 text-black">view</button>
       </Link>
     </div>
   );
