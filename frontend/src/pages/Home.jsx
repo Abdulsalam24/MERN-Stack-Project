@@ -20,9 +20,9 @@ function Home() {
 
   return (
     <div className="w-4/5 m-auto">
-      <div className="mt-10 text-center text-2xl md:text-2xl lg:text-3xl">
+      <div className="mt-10 text-center">
         <h2>What do you need help with ?</h2>
-        <p className="text-center my-6 font-bold text-gray-500">
+        <p className="text-center my-4 font-bold text-gray-400 text-base md:text-xl lg:text-2xl">
           Please choose from an option below
         </p>
       </div>

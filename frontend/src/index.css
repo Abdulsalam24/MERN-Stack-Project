@@ -8,14 +8,18 @@
   gap: 0.3rem;
 }
 
+
 .form-control button {
   font-size: clamp(14px, 2vw, 19px);
 }
 
-/* 
 h2 {
-  font-size: 2.3rem;
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 500;
 }
+
+/* 
+
 
 h3 {
   font-size: 1.7rem;
@@ -25,10 +29,11 @@ h4 {
   font-size: 1.4rem;
 } */
 /* 
+
+*/
 p {
   font-size: 1.1rem;
-} */
-
+} 
 form .input-div {
   position: relative;
   margin: 0.5rem 0;

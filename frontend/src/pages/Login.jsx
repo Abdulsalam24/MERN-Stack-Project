@@ -80,7 +80,7 @@ function Login() {
           <FaUserLock />
         </div>
         <div className="text-center my-3">
-          <button className="btn bg-black text-white w-full btn-xs sm:btn-sm md:btn-md lg:btn-lg">
+          <button className="btn bg-black text-white w-full btn-md">
             Submit
           </button>
         </div>
