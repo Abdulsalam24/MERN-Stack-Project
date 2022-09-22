@@ -7,22 +7,19 @@ import { getTickets, reset } from "../features/tickets/ticketSlice";
 
 function Tickets() {
   const dispatch = useDispatch();
-  const { tickets, isSuccess } = useSelector(
-    (state) => state.tickets
-  );
+  const { tickets, isSuccess } = useSelector((state) => state.tickets);
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(reset()); 
+      dispatch(reset());
     }
     dispatch(getTickets());
   }, [dispatch]);
 
-
   return (
-    <>
+    <div className="w-4/5 m-auto container">
       <BackButton url="/" />
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-center my-10">
         <h2>Tickets</h2>
       </div>
 
@@ -35,7 +32,7 @@ function Tickets() {
       {tickets.map((ticket) => (
         <TicketItem key={ticket._id} ticket={ticket} />
       ))}
-    </>
+    </div>
   );
 }
 

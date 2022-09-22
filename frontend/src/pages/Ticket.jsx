@@ -7,6 +7,7 @@ import BackButton from "../components/BackButton";
 import { createNote, getNotes } from "../features/notes/noteSlice";
 import NoteItem from "../components/NoteItem";
 import Modal from "react-modal";
+import { ImCancelCircle } from "react-icons/im";
 
 function Ticket() {
   const [noteText, setNoteText] = useState("");
@@ -67,7 +68,7 @@ function Ticket() {
   };
 
   return (
-    <div>
+    <div className="w-4/5 m-auto container">
       <BackButton url="/tickets" />
       <div className="flex justify-between items-center my-4">
         <h3>Ticket Id: {_id} </h3>
@@ -86,37 +87,43 @@ function Ticket() {
       </div>
 
       {status === "new" && (
-        <div
-          className="btn mt-3 text-white bg-red-500 w-full border-0"
-          onClick={handleCloseTicket}
-        >
-          close
+        <div className="text-right">
+          <button
+            className="btn mt-3 text-white bg-red-700 border-0"
+            onClick={handleCloseTicket}
+          >
+            <ImCancelCircle className="mr-3"/>Close 
+          </button>
         </div>
       )}
 
-      <button className="btn bg-black text-white my-5" onClick={openModal}>
-        Create note
-      </button>
-
+      <div>
+        <button className="btn bg-black text-white my-5" onClick={openModal}>
+          Create note
+        </button>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={openModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Create note"
-        
       >
-        <div onClick={() => setModalIsOpen(false)}>X</div>
-        <form onSubmit={handleNoteSubmit}>
-          <input
-            type="text"
+        <div onClick={() => setModalIsOpen(false)}>
+          <ImCancelCircle />
+        </div>
+        <form onSubmit={handleNoteSubmit} className="mt-5 flex items-center">
+          <textarea
             name="text"
             id="text"
-            className="input"
+            className="input border border-black"
             value={noteText}
             onChange={(e) => setNoteText(e.target.value)}
-          />
-          <div className="btn bg-black text-white" onClick={handleNoteSubmit}>
+          ></textarea>
+          <div
+            className="btn bg-black text-white ml-4"
+            onClick={handleNoteSubmit}
+          >
             Submit
           </div>
         </form>

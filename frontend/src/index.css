@@ -17,10 +17,12 @@ h2 {
   font-weight: 500;
 }
 
-.form-control input,.form-control select,.form-control textarea{
+.form-control input,
+.form-control select,
+.form-control textarea {
   margin: 5px 0 20px;
 }
-.form-control select{
+.form-control select {
   outline: solid rgb(235, 235, 235);
   padding: 0 10px;
   margin: 5px 0 20px;
@@ -40,7 +42,11 @@ h4 {
 */
 p {
   font-size: 1.1rem;
-} 
+}
+
+.container{
+  margin-bottom: 30px;
+}
 
 form .input-div {
   position: relative;
@@ -58,26 +64,40 @@ form .input-div input {
   background-color: white;
 }
 
-.ticket-header {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 2rem;
-  padding: 1rem 3rem;
-  background-color: rgb(224, 224, 224);
-}
-
-.ticket {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 2rem;
-  padding: 1rem 3rem;
-  background-color: rgb(224, 224, 224);
-}
-
 .status-new {
   background-color: rgb(8, 113, 8);
 }
 
 .status-closed {
   background-color: rgb(204, 10, 10);
+}
+
+.ticket-header,
+.ticket {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 1rem;
+  background-color: rgb(224, 224, 224);
+  font-size: clamp(10px, 2.5vw, 15px);
+}
+
+.ticket p,
+.ticket a button {
+  flex: 1;
+  font-size: clamp(10px, 2vw, 15px);
+}
+
+.ticket-header div {
+  flex: 2;
+}
+
+@media (min-width: 1027px) {
+  .ticket-header,
+  .ticket {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 2rem;
+    padding: 1rem 3rem;
+    background-color: rgb(224, 224, 224);
+  }
 }
