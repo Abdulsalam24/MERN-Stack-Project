@@ -16,24 +16,24 @@ function NavBar() {
   };
 
   return (
-    <>
+    <div className=" text-base md:text-lg lg:text-xl">
       <header className="flex justify-between items-center p-5 border-b-2 border-gray-300">
         <Link to="/">
-          <h1 className="text-2xl">Support Desk</h1>
+          <h1>Support Desk</h1>
         </Link>
 
         <ul className="flex">
           {user ? (
-            <button className="btn bg-black text-white" onClick={logoutUser}>
+            <button className="btn bg-black text-white " onClick={logoutUser}>
               <FaSignOutAlt className="mr-2" /> Logout
             </button>
           ) : (
             <>
-              <Link to="/login" className="flex items-center">
+              <Link to="/login" className="flex items-center ">
                 <FaSignOutAlt /> <li> Login</li>
               </Link>
 
-              <Link to="/register" className="flex items-center ml-3">
+              <Link to="/register" className="flex items-center ml-3 ">
                 <FaUserAlt />
                 <li> Register</li>
               </Link>
@@ -41,7 +41,7 @@ function NavBar() {
           )}
         </ul>
       </header>
-    </>
+    </div>
   );
 }
 

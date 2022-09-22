@@ -26,7 +26,7 @@ function App() {
             <Route path='/create-ticket' element={<ProtectRoute />} >
               <Route path='/create-ticket' element={<CreateTicket />} />
             </Route>
-            
+
             <Route path='/tickets' element={<ProtectRoute />} >
               <Route path='/tickets' element={<Tickets />} />
             </Route>
