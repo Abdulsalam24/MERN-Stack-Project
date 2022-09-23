@@ -84,7 +84,7 @@ const deleteTicket = asyncHandler(async (req, res) => {
         throw new Error("ticket not found")
     }
 
-    await Ticket.remove()
+    await Ticket.deleteOne()
 
     res.status(200).json({ message: "success" })
 })

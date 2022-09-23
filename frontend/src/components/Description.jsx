@@ -12,7 +12,6 @@ function Description() {
   const [edit, setEdit] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { ticketId } = useParams();
 
@@ -23,7 +22,6 @@ function Description() {
   const onUpdateTicket = () => {
     dispatch(updateTicket({ ticketId, description }));
     setEdit(!edit);
-    // navigate("/tickets");
   };
 
   return (

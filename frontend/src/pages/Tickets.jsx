@@ -12,8 +12,8 @@ function Tickets() {
   useEffect(() => {
     if (isSuccess) {
       dispatch(reset());
+      dispatch(getTickets());
     }
-    dispatch(getTickets());
   }, [dispatch]);
 
   return (
@@ -29,9 +29,11 @@ function Tickets() {
         <div>Status</div>
       </div>
 
-      {tickets.map((ticket) => (
-        <TicketItem key={ticket._id} ticket={ticket} />
-      ))}
+      {!tickets.message? (
+        tickets.map((ticket) => <TicketItem key={ticket._id} ticket={ticket} />)
+      ) : (
+        <p className="text-center">No ticket yet</p>
+      )}
     </div>
   );
 }
