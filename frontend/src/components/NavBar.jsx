@@ -6,18 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 
 function NavBar() {
-  const { user} = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const logoutUser = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate("/")
+    navigate("/");
   };
 
   return (
-    <div className=" text-base md:text-lg lg:text-xl">
-      <header className="flex justify-between items-center py-4 border-b-2 border-gray-300">
+    <div className=" text-base md:text-lg lg:text-xl px-10">
+      <header className="flex justify-between items-center py-2 border-b-2 border-gray-300">
         <Link to="/">
           <h1>Support Desk</h1>
         </Link>

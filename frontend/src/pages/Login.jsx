@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUserLock, FaSignInAlt } from "react-icons/fa";
 
-import { login,reset } from "../features/auth/authSlice";
-
+import { login, reset } from "../features/auth/authSlice";
 
 function Login() {
   const [formData, setformData] = useState({
@@ -18,7 +17,10 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isSuccess,isError } = useSelector((state) => state.auth);
+  const { user, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
 
   const onChange = (e) => {
     setformData((prevState) => ({
@@ -26,7 +28,7 @@ function Login() {
       [e.target.name]: e.target.value,
     }));
   };
-
+  
   const onSubmit = (e) => {
     e.preventDefault();
     const userData = {
@@ -37,14 +39,16 @@ function Login() {
   };
 
   useEffect(() => {
-    if(isError){
-      toast.error()
+    if (isError) {
+      toast.error('Wrong user credential');
     }
-    if (isSuccess || user) {
+    if (isSuccess) {
+      toast.success('Logged in');
       navigate("/");
     }
     dispatch(reset());
-  }, [navigate,dispatch,isSuccess,isError,user]);
+
+  }, [navigate, dispatch, isSuccess, isError, user, message]);
 
   return (
     <div className="w-4/5 m-auto">
