@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserAlt } from "react-icons/fa";
+import { FaBlenderPhone, FaUserAlt } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
@@ -18,9 +18,8 @@ function NavBar() {
     <div className=" text-base md:text-lg lg:text-xl px-5">
       <header className="flex justify-between items-center py-5 border-b-2 border-gray-300">
         <Link to="/">
-          <h1>Phone support Desk</h1>
+          <h1><FaBlenderPhone fill="black" className="inline-block mb-1"/> Phone Desk </h1>
         </Link>
-
         <ul className="flex">
           {user ? (
             <button className="btn bg-black btn-base text-white " onClick={logoutUser}>
