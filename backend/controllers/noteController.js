@@ -53,7 +53,31 @@ const createNote = asyncHandler(async (req, res) => {
 })
 
 
+
+const updateNote = asyncHandler(async (req, res) => {
+    // //check if it the user
+    // const user = await User.findById(req.user.id)
+
+    // if (!user) {
+    //     res.status(401)
+    //     throw new Error('User not found')
+    // }
+
+    // const ticket = await Ticket.findById(req.params.ticketId)
+    // console.log(ticket , 'ticket leleyi')
+    // if(ticket.user.toString() !== req.user.id){
+    //     res.status(401)
+    //     throw new Error('user not authorized')
+    // }
+
+    // const updatedNote = await Note.findByIdAndUpdate(req.params.ticketId , req.body , {new : true})
+
+    // res.status(200).json(updatedNote)
+})
+
+
 module.exports = {
     getNotes,
-    createNote
+    createNote,
+    updateNote
 }

@@ -90,6 +90,8 @@ const deleteTicket = asyncHandler(async (req, res) => {
 })
 
 const updateTicket = asyncHandler(async (req, res) => {
+    const { description } = req.body
+
     const user = await User.findById(req.user.id)
 
     if (!user) {
@@ -104,8 +106,7 @@ const updateTicket = asyncHandler(async (req, res) => {
         throw new Error("ticket not found")
     }
 
-    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, req.body, { new: true })
-
+    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, {description}, { new: true })
     res.status(200).json(updatedTicket)
 })
 

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { closeTicket, getTicket, reset } from "../features/tickets/ticketSlice";
+import {
+  closeTicket,
+  getTicket,
+  reset,
+  deleteTicket,
+} from "../features/tickets/ticketSlice";
 import { toast } from "react-toastify";
 import BackButton from "../components/BackButton";
 import { createNote, getNotes } from "../features/notes/noteSlice";
 import NoteItem from "../components/NoteItem";
 import Modal from "react-modal";
 import { ImCancelCircle } from "react-icons/im";
+import Description from "../components/Description";
 
 function Ticket() {
   const [noteText, setNoteText] = useState("");
@@ -67,6 +73,12 @@ function Ticket() {
     closeModal();
   };
 
+  const onDeleteTicket = () => {
+    dispatch(deleteTicket(ticketId));
+    navigate("/tickets");
+  };
+
+
   return (
     <div className="w-4/5 m-auto container">
       <BackButton url="/tickets" />
@@ -81,10 +93,14 @@ function Ticket() {
 
       <h4>Product: {product}</h4>
 
-      <div className="mt-3 p-4 bg-gray-200">
-        <p className="mb-2 font-bold">Description of issue</p>
-        <p>{description}</p>
-      </div>
+      <Description/>
+
+      <button
+        className="btn bg-red-600 border-0 text-white mt-2"
+        onClick={onDeleteTicket}
+      >
+        Delete
+      </button>
 
       {status === "new" && (
         <div className="text-right">
@@ -92,7 +108,8 @@ function Ticket() {
             className="btn mt-3 text-white bg-red-700 border-0"
             onClick={handleCloseTicket}
           >
-            <ImCancelCircle className="mr-3"/>Close 
+            <ImCancelCircle className="mr-3" />
+            Close
           </button>
         </div>
       )}
@@ -102,6 +119,7 @@ function Ticket() {
           Create note
         </button>
       </div>
+
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={openModal}

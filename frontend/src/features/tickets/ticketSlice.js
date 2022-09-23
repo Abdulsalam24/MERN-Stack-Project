@@ -48,7 +48,41 @@ export const closeTicket = createAsyncThunk('ticket/close', async (ticketId, thu
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
+
 })
+
+export const deleteTicket = createAsyncThunk('ticket/delete', async (ticketId, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await ticketService.deleteTicket(ticketId, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+
+export const updateTicket = createAsyncThunk('ticket/update', async ({ ticketId, description }, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await ticketService.updateTicket(ticketId, description, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// export const closeTicket = createAsyncThunk('ticket/close', async (ticketId, thunkAPI) => {
+//     try {
+//         const token = thunkAPI.getState().auth.user.token
+//         return await ticketService.closeTicket(ticketId, token)
+//     } catch (error) {
+//         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+//         return thunkAPI.rejectWithValue(message)
+//     }
+
+// })
+
 
 const ticketSlice = createSlice({
     name: "ticket",
@@ -101,10 +135,43 @@ const ticketSlice = createSlice({
                 state.message = action.payload
             })
 
+
             //close ticket
             .addCase(closeTicket.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.tickets.map((ticket) => ticket._id === action.payload._id ? ticket.status = "closed" : ticket)
+            })
+
+
+            //delete ticket
+            .addCase(deleteTicket.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(deleteTicket.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.ticket = null
+            })
+            .addCase(deleteTicket.rejected, (state, action) => {
+                state.isError = true
+                state.isLoading = false
+                state.message = action.payload
+            })
+
+
+            // updateTicket
+            .addCase(updateTicket.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTicket.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.ticket = action.payload
+            })
+            .addCase(updateTicket.rejected, (state, action) => {
+                state.isError = true
+                state.isLoading = false
+                state.message = action.payload
             })
     }
 })
