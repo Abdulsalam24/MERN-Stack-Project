@@ -109,10 +109,14 @@ function CreateTicket() {
             onChange={onChange}
             className="input w-full"
           >
-            <option value="ipad">Ipad</option>
-            <option value="apple">Apple</option>
-            <option value="macBook Pro">MacBook Pro</option>
+            <option value="ipad">ipad</option>
+            <option value="apple">apple</option>
+            <option value="macBook Pro">macBook Pro</option>
             <option value="iphone">iphone</option>
+            <option value="samsung">samsung</option>
+            <option value="techno">techno</option>
+            <option value="infinix">infinix</option>
+            <option value="itel">itel</option>
           </select>
         </div>
 

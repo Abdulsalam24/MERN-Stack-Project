@@ -12,6 +12,11 @@
   font-size: clamp(14px, 2vw, 16px);
 }
 
+h1 {
+  font-size: clamp(15px, 2.5vw, 40px);
+}
+
+
 h2 {
   font-size: clamp(24px, 2.5vw, 40px);
   font-weight: 500;

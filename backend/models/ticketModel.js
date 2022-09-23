@@ -10,7 +10,7 @@ const ticketSchema = moongose.Schema({
     product: {
         type: String,
         required: [true, 'Please select a product'],
-        enum: ['apple', "macBook Pro", 'ipad', 'iphone']
+        enum: ['apple', "macBook Pro", 'ipad', 'iphone', 'samsung', 'techno', 'infinix', 'itel']
     },
     description: {
         type: String,
