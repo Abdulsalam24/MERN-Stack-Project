@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUserLock, FaSignInAlt } from "react-icons/fa";
-
+import Spinner from "../components/Spinner";
 import { login, reset } from "../features/auth/authSlice";
 
 function Login() {
@@ -17,10 +17,9 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isSuccess, isError, message } = useSelector(
+  const { user, isSuccess, isError, isLoading, message } = useSelector(
     (state) => state.auth
   );
-
 
   const onChange = (e) => {
     setformData((prevState) => ({
@@ -28,7 +27,7 @@ function Login() {
       [e.target.name]: e.target.value,
     }));
   };
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     const userData = {
@@ -40,15 +39,18 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      toast.error('Wrong user credential');
+      toast.error("Wrong user credential");
     }
     if (isSuccess) {
-      toast.success('Logged in');
+      toast.success("Logged in");
       navigate("/");
     }
     dispatch(reset());
-
   }, [navigate, dispatch, isSuccess, isError, user, message]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="w-4/5 m-auto">

@@ -4,6 +4,7 @@ import { FaUserAlt, FaUserLock, FaUserCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../components/Spinner";
 import { register, reset } from "../features/auth/authSlice";
 
 function Register() {
@@ -48,11 +49,15 @@ function Register() {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess || user) {
+    if (isSuccess) {
       navigate("/");
     }
     dispatch(reset());
-  }, [user, isError, isSuccess, message, isLoading, dispatch, navigate]);
+  }, [navigate, dispatch, isSuccess, isError, user, message]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="w-4/5 m-auto">

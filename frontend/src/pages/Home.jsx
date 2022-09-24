@@ -1,9 +1,5 @@
 import { useEffect } from "react";
 import {
-  FaUserAlt,
-  FaUserLock,
-  FaUserCheck,
-  FaSignInAlt,
   FaTicketAlt,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -17,6 +13,8 @@ function Home() {
   useEffect(() => {
     dispatch(reset());
   }, []);
+
+
 
   return (
     <div className="flex flex-col items-center justify-center h-96 w-4/5 m-auto">

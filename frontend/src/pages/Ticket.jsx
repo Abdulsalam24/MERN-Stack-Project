@@ -12,6 +12,8 @@ import BackButton from "../components/BackButton";
 import { createNote, getNotes } from "../features/notes/noteSlice";
 import NoteItem from "../components/NoteItem";
 import Modal from "react-modal";
+import Spinner from "../components/Spinner";
+
 import { ImCancelCircle } from "react-icons/im";
 import Description from "../components/Description";
 
@@ -24,7 +26,7 @@ function Ticket() {
 
   const { ticketId } = useParams();
 
-  const { ticket, isError } = useSelector((state) => state.tickets);
+  const { ticket, isError, isLoading } = useSelector((state) => state.tickets);
   const { _id, status, product, description, createdAt } = ticket;
 
   //notes
@@ -78,6 +80,9 @@ function Ticket() {
     navigate("/tickets");
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="w-4/5 m-auto container">
@@ -93,7 +98,7 @@ function Ticket() {
 
       <h4>Product: {product}</h4>
 
-      <Description/>
+      <Description />
 
       <button
         className="btn bg-red-600 border-0 text-white mt-2"

@@ -1,20 +1,26 @@
 import { useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../components/BackButton";
 import TicketItem from "../components/TicketItem";
+import Spinner from "../components/Spinner";
 import { getTickets, reset } from "../features/tickets/ticketSlice";
 
 function Tickets() {
   const dispatch = useDispatch();
-  const { tickets, isSuccess } = useSelector((state) => state.tickets);
+  const { tickets, isSuccess, isLoading } = useSelector(
+    (state) => state.tickets
+  );
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(reset());
-      dispatch(getTickets());
     }
+    dispatch(getTickets());
   }, [dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="w-4/5 m-auto container">
@@ -29,7 +35,7 @@ function Tickets() {
         <div>Status</div>
       </div>
 
-      {!tickets.message? (
+      {!tickets.message ? (
         tickets.map((ticket) => <TicketItem key={ticket._id} ticket={ticket} />)
       ) : (
         <p className="text-center">No ticket yet</p>
