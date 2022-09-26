@@ -90,7 +90,7 @@ const deleteTicket = asyncHandler(async (req, res) => {
 })
 
 const updateTicket = asyncHandler(async (req, res) => {
-    const { description } = req.body
+    const { description, status } = req.body
 
     const user = await User.findById(req.user.id)
 
@@ -106,9 +106,11 @@ const updateTicket = asyncHandler(async (req, res) => {
         throw new Error("ticket not found")
     }
 
-    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, {description}, { new: true })
+    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, { description,status }, { new: true })
+
     res.status(200).json(updatedTicket)
 })
+
 
 
 module.exports = {

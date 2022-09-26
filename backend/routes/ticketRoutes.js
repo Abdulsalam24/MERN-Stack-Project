@@ -5,6 +5,7 @@ const { getTickets, getTicket, deleteTicket, createTicket, updateTicket } = requ
 const router = express.Router()
 
 const noteRouter = require("./noteRoutes")
+
 router.use("/:ticketId/note" , noteRouter)
 
 router.route("/").get(protect, getTickets).post(protect, createTicket)

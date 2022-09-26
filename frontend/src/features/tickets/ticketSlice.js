@@ -48,7 +48,6 @@ export const closeTicket = createAsyncThunk('ticket/close', async (ticketId, thu
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
-
 })
 
 export const deleteTicket = createAsyncThunk('ticket/delete', async (ticketId, thunkAPI) => {
@@ -124,13 +123,14 @@ const ticketSlice = createSlice({
                 state.message = action.payload
             })
 
-
+            //closeticket
             .addCase(closeTicket.pending, (state) => {
                 state.isLoading = true
             })
             .addCase(closeTicket.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
+                state.ticket = action.payload
                 state.tickets.map((ticket) => ticket._id === action.payload._id ? ticket.status = "closed" : ticket)
             })
             .addCase(closeTicket.rejected, (state, action) => {
@@ -150,6 +150,7 @@ const ticketSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.ticket = null
+                state.tickets.filter((ticket) => ticket.id !== action.payload.id)
             })
             .addCase(deleteTicket.rejected, (state, action) => {
                 state.isError = true

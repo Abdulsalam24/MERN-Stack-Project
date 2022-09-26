@@ -40,7 +40,8 @@ const closeTicket = async (ticketId, token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.put(TICKET_API + ticketId, { status: "closed" }, config)
+    const response = await axios.put(TICKET_API + ticketId,{ status: "closed" }, config)
+    console.log(response, 'dataaa')
     return response.data
 }
 

@@ -26,7 +26,8 @@ function Ticket() {
 
   const { ticketId } = useParams();
 
-  const { ticket, isError, isLoading } = useSelector((state) => state.tickets);
+  const { ticket, isError, isLoading,isSuccess } = useSelector((state) => state.tickets);
+
   const { _id, status, product, description, createdAt } = ticket;
 
   //notes
@@ -44,7 +45,9 @@ function Ticket() {
 
   const handleCloseTicket = () => {
     dispatch(closeTicket(ticketId));
-    navigate("/tickets");
+    if (isSuccess) {
+      navigate("/tickets");
+    }
   };
 
   const customStyles = {
