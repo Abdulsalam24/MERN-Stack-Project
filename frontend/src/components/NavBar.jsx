@@ -15,8 +15,8 @@ function NavBar() {
   };
 
   return (
-    <div className=" text-base md:text-lg lg:text-xl px-5">
-      <header className="flex justify-between items-center py-5 border-b-2 border-gray-300">
+    <div className="text-base md:text-lg lg:text-xl px-5">
+      <header className="flex justify-between items-center py-4">
         <Link to="/">
           <h1><FaBlenderPhone fill="black" className="inline-block mb-1"/> Phone Desk </h1>
         </Link>

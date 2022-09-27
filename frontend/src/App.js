@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import CreateTicket from './pages/CreateTicket';
 import { ToastContainer } from 'react-toastify';
 import ProtectRoute from './components/ProtectRoute';
+import wave from './asset/img/wave.svg'
 import Tickets from './pages/Tickets';
 
 import Ticket from './pages/Ticket';
