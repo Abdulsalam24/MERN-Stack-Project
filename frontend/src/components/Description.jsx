@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { updateTicket } from "../features/tickets/ticketSlice";
+import { useParams } from "react-router-dom";
+import { closeTicket, updateTicket } from "../features/tickets/ticketSlice";
+import { useNavigate } from "react-router-dom";
 
 function Description() {
-  const { ticket } = useSelector((state) => state.tickets);
+  const { ticket, isSuccess } = useSelector((state) => state.tickets);
+  const { status } = ticket;
+
   const { description: ticketDescription } = ticket;
 
   const [description, setDescription] = useState("");
   const [edit, setEdit] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { ticketId } = useParams();
 
@@ -24,39 +28,49 @@ function Description() {
     setEdit(!edit);
   };
 
+  const handleCloseTicket = () => {
+    dispatch(closeTicket(ticketId));
+    if (isSuccess) {
+      navigate("/tickets");
+    }
+  };
+
   return (
-    <div className="mt-3 p-4 bg-gray-200 flex justify-between items-start">
+    <div className="description my-5 mb-10 flex justify-between items-start p-5">
       <div>
         <p className="mb-2 font-bold">Description of issue</p>
-
-        {!edit ? (
-          <p>{ticketDescription}</p>
-        ) : (
-          <input
-            type="text"
-            value={description}
-            onSubmit={onUpdateTicket}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        )}
+        <input
+          type="text"
+          className="p-3"
+          disabled={edit ? false : true}
+          value={edit ? description : ticketDescription}
+          onChange={(e) => setDescription(e.target.value)}
+          onSubmit={onUpdateTicket}
+        />
       </div>
 
-      {!edit ? (
-        <button
-          className="btn bg-black text-white"
-          onClick={() => setEdit(!edit)}
-        >
-          edit
-        </button>
-      ) : (
-        <button className="btn bg-black text-white" onClick={onUpdateTicket}>
-          Update
-        </button>
-      )}
-      {/* 
-      <button className="btn bg-black text-white" onClick={onUpdateTicket}>
-        Update
-      </button> */}
+      <div className="flex items-center gap-3">
+        {!edit ? (
+          <button className="btn btn-sm" onClick={() => setEdit(!edit)}>
+            edit
+          </button>
+        ) : (
+          <button className="btn btn-sm" onClick={onUpdateTicket}>
+            Update
+          </button>
+        )}
+
+        {status === "new" && (
+          <div className="text-right">
+            <button
+              className="btn btn-sm border-0"
+              onClick={handleCloseTicket}
+            >
+              Close
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { reset } from "../features/tickets/ticketSlice";
 
-import mobile2 from "../asset/img/GameCredits.png";
 import mobile5 from "../asset/img/Home.png";
 import mobile6 from "../asset/img/Monthly.png";
 import mobile7 from "../asset/img/Payments.png";
 import mobile8 from "../asset/img/Sendmoney.png";
 import mobile9 from "../asset/img/Settings.png";
-// import mobile10 from "../asset/img/VaultSetup.png";
 
 function Home() {
   const dispatch = useDispatch();
@@ -21,10 +19,6 @@ function Home() {
   }, []);
 
   const images = [
-    {
-      image: mobile2,
-    },
-
     {
       image: mobile5,
     },
@@ -41,6 +35,7 @@ function Home() {
       image: mobile9,
     },
   ];
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (currentIndex === images.length - 1) {
@@ -53,17 +48,17 @@ function Home() {
   }, [currentIndex, images.length]);
 
   return (
-    <div className="my-10">
+    <div className="max">
       <div className="flex gap-5 flex-col md:flex-row justify-between mt-12 items-center">
-        <div className="w-4/5">
+        <div>
           <div className="text-center md:text-left">
-            <h2>What phone complaint do have?</h2>
+            <h2>Which phone complaint do have?</h2>
             <p className="my-4 text-base md:text-xl lg:text-2xl">
               Please choose from an option below
             </p>
           </div>
 
-          <div className="form-control flex items-center flex-col md:flex-row flex-wrap ">
+          <div className="form-control flex items-center flex-col md:flex-row flex-wrap gap-3">
             <div className="my-3">
               <Link to="/create-ticket">
                 <button className="btn">
@@ -82,7 +77,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="logo">
+        <div className="logo w-2/5">
           <div className="waitlist-img">
             <div className="mobile-img max-w-xs max-h-xs md:max-w-xs md:max-h-xs">
               <img src={images[currentIndex].image} alt="mobile" />

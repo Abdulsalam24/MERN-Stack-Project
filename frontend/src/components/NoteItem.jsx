@@ -3,11 +3,10 @@ import React from "react";
 function NoteItem({ note, user }) {
   return (
     <div
-      className="mt-2 bg-gray-200 p-4"
+      className="mt-2 bg-gray-200 p-4 w-6/12"
       style={{
         backgroundColor: `${note.isStaff ? "#ab3030" : "#F0F0F0"}`,
         color: `${note.isStaff ? "#ffffff" : "#000000"}`
-
       }}
     >
       <p className="mb-3">

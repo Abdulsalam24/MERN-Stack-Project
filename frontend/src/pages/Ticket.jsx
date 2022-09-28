@@ -16,6 +16,10 @@ import Spinner from "../components/Spinner";
 
 import { ImCancelCircle } from "react-icons/im";
 import Description from "../components/Description";
+import { FaClock } from "react-icons/fa";
+import { FiSmartphone } from "react-icons/fi";
+import { AiOutlineFieldNumber } from "react-icons/ai";
+import { GrStatusUnknown } from "react-icons/gr";
 
 function Ticket() {
   const [noteText, setNoteText] = useState("");
@@ -26,7 +30,9 @@ function Ticket() {
 
   const { ticketId } = useParams();
 
-  const { ticket, isError, isLoading,isSuccess } = useSelector((state) => state.tickets);
+  const { ticket, isError, isLoading, isSuccess } = useSelector(
+    (state) => state.tickets
+  );
 
   const { _id, status, product, description, createdAt } = ticket;
 
@@ -42,13 +48,6 @@ function Ticket() {
     }
     dispatch(getNotes(ticketId));
   }, []);
-
-  const handleCloseTicket = () => {
-    dispatch(closeTicket(ticketId));
-    if (isSuccess) {
-      navigate("/tickets");
-    }
-  };
 
   const customStyles = {
     content: {
@@ -81,6 +80,8 @@ function Ticket() {
   const onDeleteTicket = () => {
     dispatch(deleteTicket(ticketId));
     navigate("/tickets");
+    dispatch(reset());
+
   };
 
   if (isLoading) {
@@ -88,78 +89,90 @@ function Ticket() {
   }
 
   return (
-    <div className="w-4/5 m-auto container">
+    <div className="max">
       <BackButton url="/tickets" />
-      <div className="flex justify-between items-center my-4">
-        <h3>Ticket Id: {_id} </h3>
-        <div className={`status-${status} btn btn-xs text-white border-0`}>
-          <p>{status}</p>
-        </div>
-      </div>
-
-      <h4>Date Submitted: {new Date(createdAt).toString().slice(0, 15)}</h4>
-
-      <h4>Product: {product}</h4>
-
-      <Description />
-
-      <button
-        className="btn bg-red-600 border-0 text-white mt-2"
-        onClick={onDeleteTicket}
-      >
-        Delete
-      </button>
-
-      {status === "new" && (
-        <div className="text-right">
-          <button
-            className="btn mt-3 text-white bg-red-700 border-0"
-            onClick={handleCloseTicket}
-          >
-            <ImCancelCircle className="mr-3" />
-            Close
-          </button>
-        </div>
-      )}
-
-      <div>
-        <button className="btn bg-black text-white my-5" onClick={openModal}>
-          Create note
-        </button>
-      </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={openModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Create note"
-      >
-        <div onClick={() => setModalIsOpen(false)}>
-          <ImCancelCircle />
-        </div>
-        <form onSubmit={handleNoteSubmit} className="mt-5 flex items-center">
-          <textarea
-            name="text"
-            id="text"
-            className="input border border-black"
-            value={noteText}
-            onChange={(e) => setNoteText(e.target.value)}
-          ></textarea>
-          <div
-            className="btn bg-black text-white ml-4"
-            onClick={handleNoteSubmit}
-          >
-            Submit
+      <div className="info">
+        <div className="card flex flex-col w-full glass p-6">
+          <div className="flex flex-col gap-5 text-left">
+            <h4 className="icon">
+              <FaClock /> Date Submitted: {" "}
+              {new Date(createdAt).toString().slice(0, 15)}
+            </h4>
+            <h4 className="icon">
+              <FiSmartphone /> Product: {product}
+            </h4>
+            <div>
+              <h4 className="icon">
+                <AiOutlineFieldNumber /> Ticket Id: {_id}
+              </h4>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="icon">
+                <GrStatusUnknown /> status:
+              </span>
+              <h4
+                className={`status-${status} btn btn-xs btn-disabled w-20 text-white border-0`}
+              >
+                {status}
+              </h4>
+            </div>
           </div>
-        </form>
-      </Modal>
 
-      <div className="notes">
-        Notes:
-        {notes.map((note) => (
-          <NoteItem key={note._id} note={note} user={user} />
-        ))}
+          <div className="card-body">
+            <Description />
+
+            <div>
+              <button
+                className="btn bg-black text-white my-5"
+                onClick={openModal}
+              >
+                Create note
+              </button>
+            </div>
+
+            <Modal
+              isOpen={modalIsOpen}
+              onAfterOpen={openModal}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Create note"
+            >
+              <div onClick={() => setModalIsOpen(false)}>
+                <ImCancelCircle />
+              </div>
+              <form
+                onSubmit={handleNoteSubmit}
+                className="mt-5 flex items-center"
+              >
+                <textarea
+                  name="text"
+                  id="text"
+                  className="input border border-black"
+                  value={noteText}
+                  onChange={(e) => setNoteText(e.target.value)}
+                ></textarea>
+                <div
+                  className="btn bg-black text-white ml-4"
+                  onClick={handleNoteSubmit}
+                >
+                  Submit
+                </div>
+              </form>
+            </Modal>
+          </div>
+          <div className="notes mb-5">
+            {notes.length > 0 && "Notes"}
+            {notes.map((note) => (
+              <NoteItem key={note._id} note={note} user={user} />
+            ))}
+          </div>
+
+          <div className="card-actions flex gap-4 items-center justify-start">
+            <button className="btn btn-sm" onClick={onDeleteTicket}>
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

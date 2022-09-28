@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "../components/Spinner";
 import { register, reset } from "../features/auth/authSlice";
+import signupimage from "../asset/img/signup-image.jpg";
 
 function Register() {
   const [formData, setformData] = useState({
@@ -51,6 +52,7 @@ function Register() {
     }
     if (isSuccess) {
       navigate("/");
+      toast.success("Sign up successfully");
     }
     dispatch(reset());
   }, [navigate, dispatch, isSuccess, isError, user, message]);
@@ -60,68 +62,68 @@ function Register() {
   }
 
   return (
-    <div className="w-4/5 m-auto">
-      <div className="flex items-center justify-center mt-10">
-        <FaUserAlt className="text-3xl" /> <h2>Register</h2>
-      </div>
-      <p className="text-center my-6 font-bold text-gray-500">
-        Please Create an Account
-      </p>
+    <div className="max flex flex-col lg:flex-row-reverse bg-white rounded-2xl shadow-sm py-14 px-6 lg:py-16 lg:px-10 ">
+      <div className="sign-up mb-10 lg:mb-0 lg:w-1/2">
+        <div className="flex items-center justify-center lg:justify-start mb-10">
+          <FaUserAlt className="text-3xl mr-3 lg:text-4xl" /> <h2>Sign up</h2>
+        </div>
 
-      <form className="form-control" onSubmit={onSubmit}>
-        <div className="input-div">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            placeholder="Enter your name"
-            className="input w-full"
-            onChange={onChange}
-          />
-          <FaUserAlt />
-        </div>
-        <div className="input-div">
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            placeholder="Enter your email"
-            className="input w-full"
-            onChange={onChange}
-          />
-        </div>
-        <div className="input-div">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            placeholder="Enter your password"
-            className="input w-full"
-            onChange={onChange}
-          />
-          <FaUserLock />
-        </div>
-        <div className="input-div">
-          <input
-            type="password"
-            name="password2"
-            id="password2"
-            value={password2}
-            placeholder="Comfirm password"
-            className="input w-full"
-            onChange={onChange}
-          />
-          <FaUserCheck />
-        </div>
-        <div className="text-center my-3">
-           <button className="btn bg-black text-white w-full btn-md">
-            Submit
-          </button>
-        </div>
-      </form>
+        <form className="form-control" onSubmit={onSubmit}>
+          <div className="input-div">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              placeholder="Enter your name"
+              className="input w-full"
+              onChange={onChange}
+            />
+            <FaUserAlt />
+          </div>
+          <div className="input-div">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              placeholder="Enter your email"
+              className="input w-full"
+              onChange={onChange}
+            />
+          </div>
+          <div className="input-div">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              placeholder="Enter your password"
+              className="input w-full"
+              onChange={onChange}
+            />
+            <FaUserLock />
+          </div>
+          <div className="input-div">
+            <input
+              type="password"
+              name="password2"
+              id="password2"
+              value={password2}
+              placeholder="Comfirm password"
+              className="input w-full"
+              onChange={onChange}
+            />
+            <FaUserCheck />
+          </div>
+          <div className="text-center my-3 lg:text-left">
+            <button className="btn w-full">Register</button>
+          </div>
+        </form>
+      </div>
+      <div className="img flex justify-center items-center w-10/12 m-auto lg:w-1/2">
+        <img src={signupimage} alt="signup-image" />
+      </div>
     </div>
   );
 }

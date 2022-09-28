@@ -7,38 +7,39 @@ import Register from './pages/Register';
 import CreateTicket from './pages/CreateTicket';
 import { ToastContainer } from 'react-toastify';
 import ProtectRoute from './components/ProtectRoute';
-import wave from './asset/img/wave.svg'
 import Tickets from './pages/Tickets';
 
 import Ticket from './pages/Ticket';
-
 
 function App() {
   return (
     <>
       <Router>
-        <div className="container m-auto font-body">
-          <NavBar />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
+        <div className='h-full'>
+          <div className="max-w-6xl m-auto font-body">
+            <NavBar />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
 
-            <Route path='/create-ticket' element={<ProtectRoute />} >
-              <Route path='/create-ticket' element={<CreateTicket />} />
-            </Route>
+              <Route path='/create-ticket' element={<ProtectRoute />} >
+                <Route path='/create-ticket' element={<CreateTicket />} />
+              </Route>
 
-            <Route path='/tickets' element={<ProtectRoute />} >
-              <Route path='/tickets' element={<Tickets />} />
-            </Route>
+              <Route path='/tickets' element={<ProtectRoute />} >
+                <Route path='/tickets' element={<Tickets />} />
+              </Route>
 
-            <Route path='/ticket/:ticketId' element={<ProtectRoute />} >
-              <Route path='/ticket/:ticketId' element={<Ticket />} />
-            </Route>
+              <Route path='/ticket/:ticketId' element={<ProtectRoute />} >
+                <Route path='/ticket/:ticketId' element={<Ticket />} />
+              </Route>
 
-          </Routes>
+            </Routes>
+          </div>
         </div>
       </Router>
+
       <ToastContainer />
     </>
   );

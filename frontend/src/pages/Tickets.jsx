@@ -4,6 +4,7 @@ import BackButton from "../components/BackButton";
 import TicketItem from "../components/TicketItem";
 import Spinner from "../components/Spinner";
 import { getTickets, reset } from "../features/tickets/ticketSlice";
+import backgroundImg from "../asset/img/bg.jpg";
 
 function Tickets() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Tickets() {
       dispatch(reset());
     }
     dispatch(getTickets());
+    dispatch(reset());
   }, [dispatch]);
 
   if (isLoading) {
@@ -23,23 +25,37 @@ function Tickets() {
   }
 
   return (
-    <div className="w-4/5 m-auto container">
-      <BackButton url="/" />
-      <div className="flex items-center justify-center my-10">
+    <div className="max">
+      <div className="flex items-center justify-center">
         <h2>Tickets</h2>
       </div>
+      <BackButton url="/" />
 
-      <div className="ticket-header mb-8">
-        <div>Date</div>
-        <div>Product</div>
-        <div>Status</div>
+      <div className="table-div overflow-x-auto">
+        <table className="table w-full shadow-lg">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Products</th>
+              <th>status</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          {!tickets.message ? (
+            tickets.map((ticket) => (
+              <TicketItem key={ticket._id} ticket={ticket} />
+            ))
+          ) : (
+            <p className="text-center">No ticket yet</p>
+          )}
+          <thead>
+            <tr>
+              <th>Total: {tickets.length} </th>
+            </tr>
+          </thead>
+        </table>
       </div>
-
-      {!tickets.message ? (
-        tickets.map((ticket) => <TicketItem key={ticket._id} ticket={ticket} />)
-      ) : (
-        <p className="text-center">No ticket yet</p>
-      )}
     </div>
   );
 }

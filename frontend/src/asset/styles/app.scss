@@ -1,0 +1,108 @@
+html {
+  background-image: url("../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  font-size: clamp(25px, 2vw, 30px);
+}
+
+h2 {
+  font-size: clamp(35px, 5vw, 50px);
+  font-weight: 600;
+}
+
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.746);
+}
+.bg-black {
+  background-color: #434447fc;
+}
+
+.form-control {
+  button {
+    font-size: clamp(14px, 2vw, 16px);
+  }
+  input,
+  select,
+  textarea {
+    margin: 5px 0 20px;
+  }
+  select {
+    outline: solid rgb(235, 235, 235);
+    padding: 0 10px;
+    margin: 5px 0 20px;
+  }
+}
+
+form {
+  .input-div {
+    position: relative;
+    margin: 0.1rem 0;
+    svg{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1rem;
+    }
+    input{
+      background-color: white;
+
+    }
+  }
+}
+
+.input {
+  border: 1px solid #cbcaca;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+.container {
+  margin-bottom: 30px;
+}
+
+.status-new {
+  background-color: rgb(8, 113, 8);
+}
+
+.status-closed {
+  background-color: rgb(204, 10, 10);
+}
+.card-body {
+  .description {
+    background-color: rgb(238, 238, 238);
+  }
+  .card-actions {
+    button {
+      background-color: rgb(180, 32, 32);
+    }
+  }
+}
+
+.table-div {
+  .table {
+    thead {
+      th {
+        background-color: #434447fc !important;
+        color: white;
+        font-size: clamp(12px, 2.5vw, 15px);
+      }
+    }
+    tbody {
+      tr {
+        td {
+          border-bottom: 1px solid #d2d2d2 !important;
+        }
+      }
+    }
+  }
+}

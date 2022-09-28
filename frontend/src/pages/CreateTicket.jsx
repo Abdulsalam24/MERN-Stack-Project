@@ -57,89 +57,91 @@ function CreateTicket() {
     return <Spinner />;
   }
 
+
   return (
-    <div className="w-4/5 m-auto container">
+    <div className="max bg-white rounded-2xl shadow-sm py-14 px-6 lg:py-16 lg:px-10">
       <BackButton url="/" />
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-center mb-1">
         <h2>Create Ticket</h2>
       </div>
-      <p className="text-center my-6 font-bold text-gray-500">
+      <p className="text-center mb-10">
         Please fill out the form below
       </p>
 
-      <div className="form-control">
-        <div className="input-div">
-          <label htmlFor="" className="font-bold">
-            Customer Name
-          </label>
-          <input
-            type="name"
-            name="name"
-            id="name"
-            disabled
-            value={name}
-            className="input w-full"
-          />
+      <div className="flex flex-col lg:gap-10 justify-between lg:flex-row ">
+        <div className="form-control flex-1">
+          <div className="input-div">
+            <label htmlFor="" className="font-bold">
+              Customer Name
+            </label>
+            <input
+              type="name"
+              name="name"
+              id="name"
+              disabled
+              value={name}
+              className="input w-full"
+            />
+          </div>
+
+          <div className="input-div">
+            <label htmlFor="" className="font-bold">
+              Customer Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              disabled
+              value={email}
+              className="input w-full"
+            />
+          </div>
         </div>
 
-        <div className="input-div">
-          <label htmlFor="" className="font-bold">
-            Customer Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            disabled
-            value={email}
-            className="input w-full"
-          />
-        </div>
+        <form className="form-control flex-1" onSubmit={onSubmit}>
+          <div className="input-div">
+            <label htmlFor="" className="font-bold">
+              Customer Product
+            </label>
+
+            <select
+              name="product"
+              id="product"
+              onChange={onChange}
+              className="input w-full"
+            >
+              <option value="ipad">ipad</option>
+              <option value="apple">apple</option>
+              <option value="macBook Pro">macBook Pro</option>
+              <option value="iphone">iphone</option>
+              <option value="samsung">samsung</option>
+              <option value="techno">techno</option>
+              <option value="infinix">infinix</option>
+              <option value="itel">itel</option>
+            </select>
+          </div>
+
+          <div className="input-div">
+            <label htmlFor="" className="font-bold">
+              Description of the issue
+            </label>
+            <textarea
+              name="description"
+              id="description"
+              value={description}
+              placeholder="Description"
+              className="textarea w-full bg-white"
+              onChange={onChange}
+            ></textarea>
+          </div>
+        </form>
       </div>
-
-      <form className="form-control" onSubmit={onSubmit}>
-        <div className="input-div">
-          <label htmlFor="" className="font-bold">
-            Customer Product
-          </label>
-
-          <select
-            name="product"
-            id="product"
-            onChange={onChange}
-            className="input w-full"
-          >
-            <option value="ipad">ipad</option>
-            <option value="apple">apple</option>
-            <option value="macBook Pro">macBook Pro</option>
-            <option value="iphone">iphone</option>
-            <option value="samsung">samsung</option>
-            <option value="techno">techno</option>
-            <option value="infinix">infinix</option>
-            <option value="itel">itel</option>
-          </select>
-        </div>
-
-        <div className="input-div">
-          <label htmlFor="" className="font-bold">
-            Description of the issue
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            value={description}
-            placeholder="Description"
-            className="textarea w-full bg-white"
-            onChange={onChange}
-          ></textarea>
-        </div>
-
-        <div className="text-center my-3">
-          <button className="btn bg-black text-white w-full btn-md">
-            Submit
-          </button>
-        </div>
-      </form>
+      <div className="text-center my-3">
+        <button onClick={onSubmit} className="btn bg-black text-white w-full btn-md">
+          Submit
+        </button>
+      </div>
     </div>
   );
 }

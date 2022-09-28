@@ -15,14 +15,14 @@ function NavBar() {
   };
 
   return (
-    <div className="text-base md:text-lg lg:text-xl px-5">
-      <header className="flex justify-between items-center py-4">
+    <div className="text-base md:text-lg lg:text-xl px-5 mb-14">
+      <header className="flex justify-between items-center py-5">
         <Link to="/">
-          <h1><FaBlenderPhone fill="black" className="inline-block mb-1"/> Phone Desk </h1>
+          <h1 className="font-bold">Phone Desk</h1>
         </Link>
         <ul className="flex">
           {user ? (
-            <button className="btn bg-black btn-base text-white " onClick={logoutUser}>
+            <button className="btn bg-black text-white " onClick={logoutUser}>
               <FaSignOutAlt className="mr-2" /> Logout
             </button>
           ) : (
@@ -33,7 +33,7 @@ function NavBar() {
 
               <Link to="/register" className="flex items-center ml-3 ">
                 <FaUserAlt />
-                <li> Register</li>
+                <li> Sign up</li>
               </Link>
             </>
           )}
