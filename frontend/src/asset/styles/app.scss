@@ -28,6 +28,7 @@ h2 {
   select,
   textarea {
     margin: 5px 0 20px;
+    
   }
   select {
     outline: solid rgb(235, 235, 235);
@@ -40,15 +41,14 @@ form {
   .input-div {
     position: relative;
     margin: 0.1rem 0;
-    svg{
+    svg {
       position: absolute;
       top: 20px;
       right: 20px;
       font-size: 1rem;
     }
-    input{
+    input {
       background-color: white;
-
     }
   }
 }
