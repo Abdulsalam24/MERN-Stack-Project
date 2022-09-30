@@ -15,8 +15,9 @@ function App() {
   return (
     <>
       <Router>
-        <div className='h-full'>
-          <div className="max-w-6xl m-auto font-body">
+        <div className='h-full font-body'>
+          <div className="max-w-6xl m-auto ">
+            
             <NavBar />
             <Routes>
               <Route path='/' element={<Home />} />
