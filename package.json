@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "support Ticket App",
   "main": "server.js",
-  
   "scripts": {
     "start": "node ./backend/server",
     "server": "nodemon ./backend/server",
@@ -21,6 +20,7 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.4",
+    "mysql": "^2.18.1",
     "react-modal": "^3.15.1"
   },
   "devDependencies": {

@@ -24,38 +24,40 @@ function Tickets() {
     return <Spinner />;
   }
 
+  console.log(tickets, "tickeeeeeeeeeeeee");
+
   return (
     <div className="max">
       <div className="flex items-center justify-center">
         <h2>Tickets</h2>
       </div>
       <BackButton url="/" />
-
-      <div className="table-div overflow-x-auto">
-        <table className="table w-full shadow-lg">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Products</th>
-              <th>status</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          {!tickets.message ? (
-            tickets.map((ticket) => (
+      {tickets.length > 0 ? (
+        <div className="table-div overflow-x-auto">
+          <table className="table w-full shadow-lg">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Products</th>
+                <th>status</th>
+                <th></th>
+              </tr>
+            </thead>
+            {tickets.map((ticket) => (
               <TicketItem key={ticket._id} ticket={ticket} />
-            ))
-          ) : (
-            <p className="text-center">No ticket yet</p>
-          )}
-          <thead>
-            <tr>
-              <th>Total: {tickets.length} </th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+            ))}
+            <thead>
+              <tr>
+                <th>Total: {tickets.length} </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      ) : (
+        <p className="text-center">No ticket yet</p>
+      )}
+
+    
     </div>
   );
 }
