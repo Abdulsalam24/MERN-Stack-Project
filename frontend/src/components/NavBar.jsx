@@ -15,9 +15,9 @@ function NavBar() {
   };
 
   return (
-    <div className="text-base md:text-lg lg:text-xl px-5 mb-14">
-      <header className="flex justify-between items-center py-5">
-        <Link to="/">
+    <nav className="nav text-base md:text-lg lg:text-xl px-5 mb-14">
+      <div className="container flex justify-between items-center py-5 max-w-6xl m-auto ">
+        <Link to="/" className="logo">
           <h1 className="font-bold">Phone Desk</h1>
         </Link>
         <ul className="flex">
@@ -27,19 +27,19 @@ function NavBar() {
             </button>
           ) : (
             <>
-              <Link to="/login" className="flex items-center ">
+              <Link to="/login" className="flex gap-1 items-center ">
                 <FaSignOutAlt /> <li> Login</li>
               </Link>
 
-              <Link to="/register" className="flex items-center ml-3 ">
+              <Link to="/register" className="flex gap-1 items-center ml-3 ">
                 <FaUserAlt />
                 <li> Sign up</li>
               </Link>
             </>
           )}
         </ul>
-      </header>
-    </div>
+      </div>
+    </nav>
   );
 }
 

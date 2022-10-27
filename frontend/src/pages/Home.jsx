@@ -51,11 +51,10 @@ function Home() {
     <div className="max">
       <div className="flex gap-5 flex-col md:flex-row justify-between mt-12 items-center">
         <div>
-          
           <div className="text-center md:text-left">
-            <h2>Which phone complaint do have?</h2>
+            <h2>Which phone complaint do you have?</h2>
             <p className="my-4 text-base md:text-xl lg:text-2xl">
-              Please choose from an option below
+              Please select one of the options listed below.
             </p>
           </div>
 
@@ -63,7 +62,7 @@ function Home() {
             <div className="my-3">
               <Link to="/create-ticket">
                 <button className="btn">
-                  Create new Ticket <FaTicketAlt className="ml-3" />
+                  new Ticket <FaTicketAlt className="ml-3" />
                 </button>
               </Link>
             </div>
@@ -71,7 +70,7 @@ function Home() {
             <div className="my-3">
               <Link to="/tickets">
                 <button className="btn">
-                  View my Tickets <FaTicketAlt className="ml-3" />
+                  View my Ticket <FaTicketAlt className="ml-3" />
                 </button>
               </Link>
             </div>

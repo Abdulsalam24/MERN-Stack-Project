@@ -16,9 +16,9 @@ function App() {
     <>
       <Router>
         <div className='h-full font-body'>
+          <NavBar />
           <div className="max-w-6xl m-auto ">
-            
-            <NavBar />
+
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
