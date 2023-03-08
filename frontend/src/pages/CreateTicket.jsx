@@ -18,7 +18,7 @@ function CreateTicket() {
 
   const { product, description } = formData;
 
-  const { isSuccess, isError, message, isLoading } = useSelector(
+  const { isSuccess, isError, message } = useSelector(
     (state) => state.tickets
   );
   const { user } = useSelector((state) => state.auth);
@@ -52,11 +52,6 @@ function CreateTicket() {
     };
     dispatch(createTicket(userData));
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
 
   return (
     <div className="max bg-white rounded-2xl shadow-sm py-14 px-6 lg:py-16 lg:px-10">

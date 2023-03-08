@@ -6,7 +6,7 @@ const initialState = {
     ticket: {},
     isError: false,
     isSuccess: false,
-    isLoading: false,
+    isLoading: true,
     message: ""
 }
 
@@ -56,6 +56,7 @@ export const deleteTicket = createAsyncThunk('ticket/delete', async (ticketId, t
         return await ticketService.deleteTicket(ticketId, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+
         return thunkAPI.rejectWithValue(message)
     }
 })

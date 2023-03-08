@@ -30,11 +30,11 @@ function Ticket() {
 
   const { ticketId } = useParams();
 
-  const { ticket, isError, isLoading, isSuccess } = useSelector(
+  const { ticket, isLoading } = useSelector(
     (state) => state.tickets
   );
 
-  const { _id, status, product, description, createdAt } = ticket;
+  const { _id, status, product, createdAt } = ticket;
 
   //notes
   const { user } = useSelector((state) => state.auth);
@@ -42,9 +42,12 @@ function Ticket() {
   const { notes } = useSelector((state) => state.notes);
 
   useEffect(() => {
-    dispatch(getTicket(ticketId));
-    if (isError) {
-      toast.error("Something is wrong");
+    try {
+      dispatch(getTicket(ticketId));
+    } catch (error) {
+      // if (isError) {
+        toast.error("Something is wrong");
+      // }
     }
     dispatch(getNotes(ticketId));
   }, []);
@@ -79,9 +82,8 @@ function Ticket() {
 
   const onDeleteTicket = () => {
     dispatch(deleteTicket(ticketId));
-    navigate("/tickets");
     dispatch(reset());
-
+    navigate("/");
   };
 
   if (isLoading) {
@@ -121,14 +123,14 @@ function Ticket() {
           <div className="card-body">
             <Description />
 
-            <div>
+            {status === "closed" ? "" : <div>
               <button
                 className="btn bg-black text-white my-5"
                 onClick={openModal}
               >
                 Create note
               </button>
-            </div>
+            </div>}
 
             <Modal
               isOpen={modalIsOpen}

@@ -7,7 +7,6 @@ function AuthStatus() {
 
     const { user } = useSelector((state) => state.auth)
 
-
     useEffect(() => {
         if (user) {
             setLoggedIn(true)

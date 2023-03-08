@@ -35,32 +35,43 @@ function Description() {
     }
   };
 
+  console.log(status , 'statusstatus')
+
+
   return (
     <div className="description my-5 mb-10 flex justify-between items-start p-5">
-      <div>
+      <div className="w-[80%] ">
         <p className="mb-2 font-bold">Description of issue</p>
+
+       <div className="w-full">
         <input
-          type="text"
-          className="p-3"
-          disabled={edit ? false : true}
-          value={edit ? description : ticketDescription}
-          onChange={(e) => setDescription(e.target.value)}
-          onSubmit={onUpdateTicket}
-        />
+            type="text"
+            className="p-3 w-full"
+            disabled={edit ? false : true}
+            value={edit ? description : ticketDescription}
+            onChange={(e) => setDescription(e.target.value)}
+            onSubmit={onUpdateTicket}
+          />
+       </div>
       </div>
 
       <div className="flex items-center gap-3">
-        {!edit ? (
-          <button className="btn btn-sm" onClick={() => setEdit(!edit)}>
-            edit
-          </button>
-        ) : (
-          <button className="btn btn-sm" onClick={onUpdateTicket}>
-            Update
-          </button>
-        )}
+        {
+          status === "closed" ? "" :
+        !edit ? 
+          (
+            <button className="btn btn-sm" onClick={() => setEdit(!edit)}>
+              edit
+            </button>
+          ) : (
+            <button className="btn btn-sm" onClick={onUpdateTicket}>
+              Update
+            </button>
+          )
+      }
 
-        {status === "new" && (
+        
+      {status === "new" && (
           <div className="text-right">
             <button
               className="btn btn-sm border-0"

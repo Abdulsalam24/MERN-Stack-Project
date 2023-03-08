@@ -69,7 +69,11 @@ const getTicket = asyncHandler(async (req, res) => {
     res.status(200).json(ticket)
 })
 
+// return await axios.delete(TICKET_API + ticketId, config)
+
 const deleteTicket = asyncHandler(async (req, res) => {
+
+    console.log(req.body , 'bodyddddddddd')
     const user = await User.findById(req.user.id)
 
     if (!user) {

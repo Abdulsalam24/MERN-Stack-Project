@@ -8,6 +8,7 @@ import backgroundImg from "../asset/img/bg.jpg";
 
 function Tickets() {
   const dispatch = useDispatch();
+  
   const { tickets, isSuccess, isLoading } = useSelector(
     (state) => state.tickets
   );
@@ -27,12 +28,16 @@ function Tickets() {
   console.log(tickets, "tickeeeeeeeeeeeee");
 
   return (
+
     <div className="max">
+      <BackButton url="/" />
+
+       {tickets.length > 0 ? (
+      <>
       <div className="flex items-center justify-center">
         <h2>Tickets</h2>
       </div>
-      <BackButton url="/" />
-      {tickets.length > 0 ? (
+     
         <div className="table-div overflow-x-auto">
           <table className="table w-full shadow-lg">
             <thead>
@@ -52,12 +57,10 @@ function Tickets() {
               </tr>
             </thead>
           </table>
-        </div>
+        </div></>
       ) : (
         <p className="text-center">No ticket yet</p>
       )}
-
-    
     </div>
   );
 }
