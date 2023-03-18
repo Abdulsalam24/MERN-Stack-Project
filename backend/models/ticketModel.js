@@ -7,13 +7,11 @@ const ticketSchema = moongose.Schema({
         required: true,
         ref: 'User'
     },
-
     product: {
         type: String,
         required: [true, 'Please select a product'],
         enum: ['apple', "macBook Pro", 'ipad', 'iphone', 'samsung', 'techno', 'infinix', 'itel'],
     },
-
     description: {
         type: String,
         required: [true, 'Please enter a description of the issue'],
@@ -25,7 +23,6 @@ const ticketSchema = moongose.Schema({
         enum: ['new', 'open', 'closed'],
         default: 'new'
     },
-
 },
     {
         timestamps: Date.now,
